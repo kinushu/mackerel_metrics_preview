@@ -4,6 +4,6 @@ feature 'root' do
   it '表示' do
     # トップページを開く
     visit '/' # root_path
-    expect(page).to have_content 'test'
+    expect(page).to have_content 'Hosts'
   end
 end

@@ -19,14 +19,14 @@ default: &default
 
 development:
   <<: *default
-  database: rails_bt_2019_development
+  database: mckl_mtc_preview_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV.fetch("RAILS_BT_APP_TEST_DB_NAME") { 'rails_bt_2019_test' } %>
+  database: <%= ENV.fetch("RAILS_BT_APP_TEST_DB_NAME") { 'mckl_mtc_preview_test' } %>
   username: <%= ENV.fetch("RAILS_BT_APP_TEST_DB_USER") { 'root' } %>
   password: <%= ENV.fetch("RAILS_BT_APP_TEST_DB_PASS") { '' } %>
   host: <%= ENV.fetch("RAILS_BT_APP_TEST_DB_HOST") { 'localhost' } %>
@@ -53,6 +53,6 @@ test:
 #
 production:
   <<: *default
-  database: rails_bt_2019_production
-  username: rails_bt_2019
-  password: <%= ENV['RAILS_BT_2019_DATABASE_PASSWORD'] %>
+  database: <%= ENV.fetch("APP_USING_DB_NAME") { 'mckl_mtc_preview_production' } %>
+  username: <%= ENV.fetch("APP_USING_DB_USER") { 'root' } %>
+  password: <%= ENV.fetch("APP_USING_DB_PASS") { '' } %>

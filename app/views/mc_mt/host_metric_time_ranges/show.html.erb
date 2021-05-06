@@ -1,0 +1,63 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @mc_mt_host_metric_time_range.host.display_name %>
+</p>
+
+<p>
+  <strong>From at:</strong>
+  <%= @mc_mt_host_metric_time_range.from_at %>
+</p>
+
+<p>
+  <strong>To at:</strong>
+  <%= @mc_mt_host_metric_time_range.to_at %>
+</p>
+<style>
+  .chart_one{
+      width: 800px;
+      height: 600px;
+  }
+</style>
+
+<p>
+  <% @mc_mt_host_metric_time_range.results.each_with_index do |res_record, i| %>
+    <% chard_div_id = "chart-idx-#{i}"
+    %>
+    <%= res_record.metric_name %><br>
+    <div class="chart_one">
+      <canvas id="<%= chard_div_id %>"></canvas>
+      <script>
+          (function(){
+            const data = {
+                datasets: [{
+                    label: '<%= res_record.metric_name %>',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: <%= raw(res_record.x_time_y_value_array.to_json) %>,
+                }]
+            };
+
+            // === include 'setup' then 'config' above ===
+            const config = {
+                type: 'line',
+                data,
+                options: {}
+            };
+
+            var myChart = new Chart(
+                document.getElementById('<%= chard_div_id %>'),
+                config
+            );
+        })();
+      </script>
+    </div>
+
+<% end %>
+</p>
+
+<%= link_to 'Edit', edit_mc_mt_host_metric_time_range_path(@mc_mt_host_metric_time_range) %> |
+<%= link_to 'Back', mc_mt_host_metric_time_ranges_path %>

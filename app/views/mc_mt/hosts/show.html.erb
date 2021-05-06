@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @mc_mt_host.display_name %>
+</p>
+<p>
+  <% @mc_mt_host.metric_time_ranges.each do |mtr| %>
+    <%= link_to(mtr) do %>
+      <%= mtr.from_at.strftime('%Y/%m/%d') %> ~ <%= mtr.to_at.strftime('%Y/%m/%d') %><br>
+    <% end %>
+  <% end %>
+</p>
+<%= link_to 'Edit', edit_mc_mt_host_path(@mc_mt_host) %> |
+<%= link_to 'Back', mc_mt_hosts_path %>

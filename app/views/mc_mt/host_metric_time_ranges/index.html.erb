@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mc Mt Host Metric Time Ranges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Host</th>
+      <th>From at</th>
+      <th>To at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mc_mt_host_metric_time_ranges.each do |mc_mt_host_metric_time_range| %>
+      <tr>
+        <td><%= mc_mt_host_metric_time_range.host_id %></td>
+        <td><%= mc_mt_host_metric_time_range.from_at %></td>
+        <td><%= mc_mt_host_metric_time_range.to_at %></td>
+        <td><%= link_to 'Show', mc_mt_host_metric_time_range %></td>
+        <td><%= link_to 'Edit', edit_mc_mt_host_metric_time_range_path(mc_mt_host_metric_time_range) %></td>
+        <td><%= link_to 'Destroy', mc_mt_host_metric_time_range, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mc Mt Host Metric Time Range', new_mc_mt_host_metric_time_range_path %>

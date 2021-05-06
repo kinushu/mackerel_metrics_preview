@@ -56,3 +56,5 @@ end
 
 gem 'bigdecimal'
 gem 'dotenv-rails'
+
+gem 'mackerel-client'

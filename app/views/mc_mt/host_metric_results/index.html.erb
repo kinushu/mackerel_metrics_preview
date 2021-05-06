@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mc Mt Host Metric Results</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Host</th>
+      <th>Metric name</th>
+      <th>From at</th>
+      <th>To at</th>
+      <th>Result</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mc_mt_host_metric_results.each do |mc_mt_host_metric_result| %>
+      <tr>
+        <td><%= mc_mt_host_metric_result.host_id %></td>
+        <td><%= mc_mt_host_metric_result.metric_name %></td>
+        <td><%= mc_mt_host_metric_result.from_at %></td>
+        <td><%= mc_mt_host_metric_result.to_at %></td>
+        <td><%= mc_mt_host_metric_result.result %></td>
+        <td><%= link_to 'Show', mc_mt_host_metric_result %></td>
+        <td><%= link_to 'Edit', edit_mc_mt_host_metric_result_path(mc_mt_host_metric_result) %></td>
+        <td><%= link_to 'Destroy', mc_mt_host_metric_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mc Mt Host Metric Result', new_mc_mt_host_metric_result_path %>

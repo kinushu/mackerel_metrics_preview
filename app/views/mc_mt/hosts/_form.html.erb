@@ -1,0 +1,22 @@
+<%= form_with(model: mc_mt_host) do |form| %>
+  <% if mc_mt_host.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mc_mt_host.errors.count, "error") %> prohibited this mc_mt_host from being saved:</h2>
+
+      <ul>
+        <% mc_mt_host.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :host_id %>
+    <%= form.text_field :host_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
