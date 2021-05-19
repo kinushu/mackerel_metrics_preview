@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'root' do
+describe('root', type: :feature, js: true, multithread: true) do
   it '表示' do
     # トップページを開く
     visit '/' # root_path

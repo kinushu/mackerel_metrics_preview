@@ -50,11 +50,18 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+
+  gem 'database_cleaner'
   gem 'rspec-rails'
+
   gem 'simplecov', require: false
 end
 
 gem 'bigdecimal'
+gem 'etc'
+
 gem 'dotenv-rails'
 
 gem 'mackerel-client'

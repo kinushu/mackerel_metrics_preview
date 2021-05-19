@@ -3,13 +3,13 @@
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
-    "babel-loader": "^8.0.6",
-    "webpack": "^4.41.4",
-    "webpack-cli": "^3.3.10"
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.7.0"
   }
 }

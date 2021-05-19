@@ -58,4 +58,49 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # テスト完了後一度だけ実行される
+  config.after(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # 各テスト実行前に実行される
+  config.before(:each) do |spec|
+    # ブラウザテストでDB操作必要な場合、multithread: trueとしておくと truncation
+    DatabaseCleaner.strategy = if spec.metadata[:multithread]
+                                 :truncation
+                               else
+                                 :transaction
+                               end
+
+    DatabaseCleaner.start
+  end
+
+  # 各テスト実行後に実行される
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  Capybara.configure do |capybara_config|
+    # capybara_config.server = :puma
+    capybara_config.server = :webrick
+    # capybara_config.default_driver = :selenium
+    # capybara_config.default_max_wait_time = 10
+  end
+
+  Capybara.register_driver :selenium do |app|
+    is_headless = (ENV['RAILS_PROJ_RSPEC_CHROME_VIEW'] != '1')
+    args = %w[no-sandbox disable-gpu mute-audio window-size=980,2000 lang=ja]
+    args << 'headless' if is_headless
+
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+        chrome_options: { args: args, w3c: false },
+      ),
+    )
+  end
+
+  config.include Capybara::DSL, type: :feature
 end
